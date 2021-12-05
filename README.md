@@ -1,7 +1,7 @@
 ### POKEMON
 
 <img src="https://pokemonkorea.co.kr/img/main_logo.png" />
-### Nuxt3 숙련도를 높히기 위한 Project.
+### Nuxt3 숙련도를 높히기 위한 조그마한 Project.
 
 TODO: 
 1. SearchComponent 분리
