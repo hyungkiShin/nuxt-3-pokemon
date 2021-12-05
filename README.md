@@ -8,16 +8,12 @@ TODO:
 3. Style 내부 요소 publishing 추가
 
 
-### First
-
 ```txt
-npm install
+$ npm install
 ```
 
-### Second
-
 ```txt
-npm run dev
+$ npm run dev
 ```
 
 > nuxt3 주요 Spec
