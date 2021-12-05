@@ -1,20 +1,16 @@
 <script setup >
-import { useParseStrImage } from '@/composables/pokemon'
 import { ref } from 'vue'
 const pokeList = await useListItems()
-// const renderImg = await useParseStrImage()
 const searchText = ref('')
-// interface item {
-//   id: string | number,
-//   name: string,
-//   img: any,
-//   sprites: any,
-//   value: any
-// }
 const pokeItem = ref([])
-
 const regExp = /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩ㄱ-ㅎㅏ-ㅣ가-힣]/g
 
+function onRenderImg (url) {
+  let parse = url.replace(/\//g,'');
+    // const renderImg = useState('renderImg')
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${parse.substring(33,28)}.png`
+
+}
 async function onSearch() {
   if (!regExp.test(searchText.value) || Number(searchText.value) > 0) {
     const data = await fetch(`/api/poke?search=${searchText.value}`)
@@ -51,8 +47,6 @@ const numValid = id => {
         </div>
       </div>
     </div>
-    {{pokeList}}
-
     <div>
       <form @submit.prevent="onSearch">
         <input type="text" v-model="searchText" />
@@ -60,8 +54,8 @@ const numValid = id => {
       </form>
     </div>
     <div class="grid-template">
-      <div class="center" v-for="(item, index) in result" :key="index">
-        <!-- <img class="size" :src="renderImg(item.url)" alt="" /> -->
+      <div class="center" v-for="(item, index) in pokeList?.results" :key="index">
+        <img class="size" :src="onRenderImg(item.url)" alt="" />
         <span class="badge">{{ item.name }}</span>
       </div>
     </div>
