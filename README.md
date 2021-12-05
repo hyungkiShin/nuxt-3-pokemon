@@ -1,6 +1,6 @@
 ### POKEMON
 
-<img src="https://assets.pokemon.com/assets/cms2/img/misc/gus/buttons/logo-pokemon-79x45.png" />
+<img src="https://pokemonkorea.co.kr/img/main_logo.png" />
 ### Nuxt3 숙련도를 높히기 위한 Project.
 
 TODO: 
