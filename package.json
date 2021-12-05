@@ -6,6 +6,10 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "nuxt3": "latest"
+    "nuxt3": "latest",
+    "@iconify-json/carbon": "^1.0.11",
+    "@unocss/nuxt": "^0.12.2",
+    "@vueuse/components": "^7.0.1",
+    "@vueuse/core": "^7.0.1"
   }
 }
