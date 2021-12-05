@@ -1,15 +1,12 @@
-<script setup >
-import { ref } from 'vue'
-
-const pokeList = await useListItems()
+<script setup>
+// import { useFetch } from '@nuxtjs/composition-api'
 const searchText = ref('')
 const pokeItem = ref([])
 const regExp = /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩ㄱ-ㅎㅏ-ㅣ가-힣]/g
 
 async function onSearch() {
   if (isValid()) {
-    // const data = await useSearch(`/api/poke?search=${searchText.value}`, { pick: ['id', 'sprites', 'types', 'name', 'weight'] })
-    const data = await fetch(`/api/poke?search=${searchText.value}`)
+    const { data } = await useFetch(`/api/poke?search=${searchText.value}`, { pick: ['id', 'sprites', 'types', 'name', 'weight'] })
     const json = await data.json()
     console.log(json)
     return (pokeItem.value = json)
@@ -18,16 +15,11 @@ async function onSearch() {
   pokeItem.value = []
 }
 
-const numValid = id => {
-  return id > 0 ? `00${id}` : ''
-}
-
 function isValid() {
   return searchText.value !== "" && !regExp.test(searchText.value) || (Number(searchText.value) > 0 && Number(searchText.value) < 898)
 }
 </script>
 <template>
-  <div>
     <div v-if="pokeItem.sprites" class="main-box">
       <div>
         <div>
@@ -39,10 +31,10 @@ function isValid() {
             <div class="wrapper">
               <img class="size" :src="pokeItem?.sprites?.other['official-artwork'].front_default" alt="" />
             </div>
-            <div style="line-height: 1.2; margin-left: 13px;">
+            <div>
               <div style="color: white">Name: {{ pokeItem.name }}</div>
-              <div style="color: white">Type: {{pokeItem?.types[0]?.type.name}}</div>
-              <div style="color: white">Wheight: {{pokeItem?.weight}}</div>
+              <div style="color: white">Type:{{pokeItem?.types[0]?.type.name}}</div>
+              <div style="color: white">Wheight:{{pokeItem?.weight}}</div>
             </div>
           </div>
         </div>
@@ -54,6 +46,4 @@ function isValid() {
         <button>Search For Pokemon</button>
       </form>
     </div>
-    <List :pokeList="pokeList" />
-  </div>
 </template>
