@@ -1,4 +1,4 @@
-<script setup >
+<script setup>
 import { ref } from 'vue'
 
 const pokeList = await useListItems()
@@ -18,42 +18,24 @@ async function onSearch() {
   pokeItem.value = []
 }
 
-const numValid = id => {
-  return id > 0 ? `00${id}` : ''
-}
-
 function isValid() {
-  return searchText.value !== "" && !regExp.test(searchText.value) || (Number(searchText.value) > 0 && Number(searchText.value) < 898)
+  return (
+    (searchText.value !== '' && !regExp.test(searchText.value)) ||
+    (Number(searchText.value) > 0 && Number(searchText.value) < 898)
+  )
 }
 </script>
 <template>
   <div>
-    <div v-if="pokeItem.sprites" class="main-box">
-      <div>
-        <div>
-          <div class="illustrated_id">
-            9펫 도감
-            <span style="color: #c7c2b5">No.{{ numValid(pokeItem.id) }}</span>
-          </div>
-          <div>
-            <div class="wrapper">
-              <img class="size" :src="pokeItem?.sprites?.other['official-artwork'].front_default" alt="" />
-            </div>
-            <div style="line-height: 1.2; margin-left: 13px;">
-              <div style="color: white">Name: {{ pokeItem.name }}</div>
-              <div style="color: white">Type: {{pokeItem?.types[0]?.type.name}}</div>
-              <div style="color: white">Wheight: {{pokeItem?.weight}}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- 검색 Item -->
+    <fetch-item :pokeItem="pokeItem"/>
     <div>
       <form @submit.prevent="onSearch">
         <input type="text" v-model="searchText" />
         <button>Search For Pokemon</button>
       </form>
     </div>
-    <List :pokeList="pokeList" />
+    <!-- Poke List -->
+    <list :pokeList="pokeList" />
   </div>
 </template>
