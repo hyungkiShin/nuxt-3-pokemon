@@ -1,5 +1,4 @@
 <script setup>
-// import { useFetch } from '@nuxtjs/composition-api'
 const searchText = ref('')
 const pokeItem = ref([])
 const regExp = /[!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\₩ㄱ-ㅎㅏ-ㅣ가-힣]/g
