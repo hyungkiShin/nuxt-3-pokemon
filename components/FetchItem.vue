@@ -8,7 +8,6 @@ defineProps({
 const numValid = id => {
   return id > 0 ? `00${id}` : ''
 }
-
 </script>
 <template>
   <div v-if="pokeItem.sprites" class="main-box">
