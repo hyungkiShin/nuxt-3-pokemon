@@ -13,7 +13,7 @@ const numValid = id => {
   <div v-if="pokeItem.sprites" class="main-box">
     <div>
       <div class="illustrated_id">
-        펫 도감
+        펫 도감.
         <span style="color: #c7c2b5">No.{{ numValid(pokeItem.id) }}</span>
       </div>
       <div>
